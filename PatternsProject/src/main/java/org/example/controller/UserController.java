@@ -6,7 +6,7 @@ import org.example.view.MainFrameForm;
 public class UserController {
     Customer customer;
     Admin admin;
-    Driver driver;
+    UserDriver userDriver;
     MainFrameForm mainFrameForm;
 
     public UserController(MainFrameForm mainFrameForm) {

@@ -1,7 +1,6 @@
 package org.example.model;
 
 public abstract class User {
-    public int id;
     public String fName;
     public String lName;
     public String phoneNumber;
@@ -12,7 +11,37 @@ public abstract class User {
         this.lName = lName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        int count = 0;
-        this.id = count++;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

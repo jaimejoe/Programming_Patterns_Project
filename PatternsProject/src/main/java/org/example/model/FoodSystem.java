@@ -1,11 +1,10 @@
 package org.example.model;
 
-import javax.swing.text.html.CSS;
 import java.util.List;
 
 public class FoodSystem {
     public List<Customer> customers;
-    public List<Driver> drivers;
+    public List<UserDriver> userDrivers;
     public List<Admin> admins;
     public List<Order> orders;
     public List<FoodItem> foodItems;
@@ -33,12 +32,12 @@ public class FoodSystem {
         this.customers = customers;
     }
 
-    public List<Driver> getDrivers() {
-        return drivers;
+    public List<UserDriver> getDrivers() {
+        return userDrivers;
     }
 
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
+    public void setDrivers(List<UserDriver> userDrivers) {
+        this.userDrivers = userDrivers;
     }
 
     public List<Admin> getAdmins() {

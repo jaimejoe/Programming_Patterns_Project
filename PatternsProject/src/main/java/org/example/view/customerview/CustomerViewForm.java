@@ -6,7 +6,7 @@ import java.awt.*;
 public class CustomerViewForm extends JFrame {
     private JPanel mainPanel;
     private JLabel customerOptionsLabel;
-    private JButton ordeBtn;
+    private JButton orderBtn;
     private JButton cancelButton;
     private JButton viewOrdersButton;
 

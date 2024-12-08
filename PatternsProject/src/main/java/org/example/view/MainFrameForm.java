@@ -1,6 +1,8 @@
 package org.example.view;
 
-import org.example.view.customerview.CustomerViewForm;
+import org.example.view.adminview.*;
+import org.example.view.customerview.*;
+import org.example.view.driverview.DriverViewForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +23,20 @@ public class MainFrameForm extends JFrame {
         customerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                MainFrameForm.this.dispose();
                 new CustomerViewForm().setVisible(true);
+            }
+        });
+        adminButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AdminViewForm().setVisible(true);
+            }
+        });
+        driverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new DriverViewForm().setVisible(true);
             }
         });
     }
