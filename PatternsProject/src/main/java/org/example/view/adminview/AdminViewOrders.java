@@ -1,4 +1,4 @@
 package org.example.view.adminview;
 
-public class adminProcessOrderForm {
+public class AdminViewOrders {
 }

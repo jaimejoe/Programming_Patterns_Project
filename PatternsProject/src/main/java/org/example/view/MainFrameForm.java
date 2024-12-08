@@ -1,19 +1,19 @@
 package org.example.view;
 
-import org.example.view.customerview.customerViewForm;
+import org.example.view.customerview.CustomerViewForm;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class mainFrameForm extends JFrame {
+public class MainFrameForm extends JFrame {
     private JButton customerButton;
     private JButton adminButton;
     private JButton driverButton;
     private JPanel mainPanel;
 
-    public mainFrameForm() throws HeadlessException {
+    public MainFrameForm() throws HeadlessException {
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,7 +21,7 @@ public class mainFrameForm extends JFrame {
         customerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new customerViewForm().setVisible(true);
+                new CustomerViewForm().setVisible(true);
             }
         });
     }

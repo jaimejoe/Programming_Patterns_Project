@@ -2,6 +2,6 @@ package org.example.view.driverview;
 
 import javax.swing.*;
 
-public class driverViewForm extends JFrame {
+public class DriverViewForm extends JFrame {
     private JPanel driverManel;
 }

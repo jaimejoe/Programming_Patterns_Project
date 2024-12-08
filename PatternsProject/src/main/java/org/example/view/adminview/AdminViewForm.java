@@ -2,7 +2,7 @@ package org.example.view.adminview;
 
 import javax.swing.*;
 
-public class adminViewForm extends JFrame{
+public class AdminViewForm extends JFrame{
     private JLabel titleLabel;
     private JButton processBtn;
     private JButton cancelBtn;
