@@ -6,22 +6,29 @@ import java.util.List;
 public class Order {
     public int orderId;
     public int count = 0;
+    public Customer customer;
     public int customerId;
     public double price;
     public List<FoodItem> items;
+    public String itemsString;
     public String processStatus;
-    public LocalDateTime dateCreated;
 
     public Order() {
     }
 
-    public Order(int customerId, double price, List<FoodItem> items, String processStatus, LocalDateTime dateCreated) {
+    public Order(Customer customer, double price, List<FoodItem> items, String processStatus) {
         this.orderId = count++;
-        this.customerId = customerId;
+        this.customer = customer;
         this.price = price;
         this.items = items;
         this.processStatus = processStatus;
-        this.dateCreated = dateCreated;
+    }
+
+    public Order(int orderId, int customerId , double price, String items, String processStatus) {
+        this.orderId = orderId;
+        this.price = price;
+        this.itemsString = items;
+        this.processStatus = processStatus;
     }
 
     public int getOrderId() {
@@ -40,12 +47,16 @@ public class Order {
         this.count = count;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getProcessStatus() {
+        return processStatus;
     }
 
     public double getPrice() {
@@ -72,11 +83,4 @@ public class Order {
         this.processStatus = processStatus;
     }
 
-    public LocalDateTime getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(LocalDateTime dateCreated) {
-        this.dateCreated = dateCreated;
-    }
 }

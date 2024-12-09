@@ -1,6 +1,12 @@
 package org.example;
 
+import org.example.model.Address;
+import org.example.model.Admin;
+import org.example.model.Customer;
+import org.example.model.UserDriver;
 import org.example.view.MainFrameForm;
+
+import java.sql.Driver;
 
 import static org.example.util.DatabaseUtil.*;
 
@@ -8,9 +14,21 @@ import static org.example.util.DatabaseUtil.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //createTable(CREATE_USER_TABLE_SQL);
-//        createTable(CREATE_ITEMS_TABLE_SQL);
-//        createTable(CREATE_ORDERS_TABLE_SQL);
-        MainFrameForm view = new MainFrameForm();
+        createCustomersTable();
+        createAdminsTable();
+        createDriversTable();
+        createOrderTable();
+        createFoodItemTable();
+        Address address1 = new Address(123, "street", "Montreal", "Quebec", "123sdf");
+        Customer customer1 = new Customer("John", "Smith", "5141234567","asd@gmail.com", 200, address1);
+
+        Admin admin1 = new Admin("Sally", "Jones", "3216549876", "fds@gmail.com");
+
+        UserDriver driver1 = new UserDriver("Carlos", "Sainz", "5679876543", "poi@gmail.com");
+
+//        insertRecordsCustomers(customer1);
+//        insertRecordsAdmins(admin1);
+//        insertRecordsDrivers(driver1);
+//        MainFrameForm view = new MainFrameForm();
     }
 }

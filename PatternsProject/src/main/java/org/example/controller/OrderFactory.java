@@ -17,7 +17,7 @@ public class OrderFactory {
             totalPrice += foodItem.getPrice();
         }
         Order order = new Order();
-        order.setCustomerId(userId);
+        //order.getCustomer().getCustomerId();
         order.setProcessStatus("Pending");
         order.setItems(items);
         order.setPrice(totalPrice);

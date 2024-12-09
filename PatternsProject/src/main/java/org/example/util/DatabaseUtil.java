@@ -1,16 +1,13 @@
 package org.example.util;
 
-import org.example.model.Address;
-import org.example.model.Admin;
-import org.example.model.Customer;
-import org.example.model.UserDriver;
+import org.example.model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseUtil {
-    private static final String DATABASE_URL = "jdbc:sqlite:.src/main/resources/school.db";;
+    private static final String DATABASE_URL = "jdbc:sqlite:src/main/resources/database/data.db";
 
     /**
      * connects to database
@@ -32,7 +29,7 @@ public class DatabaseUtil {
     public static void createCustomersTable() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS customers (
-                customer_id INTEGER NOT NULL PRIMARY KEY,
+                customer_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 first_name TEXT NOT NULL,
                 last_name TEXT NOT NULL,
                 address TEXT NOT NULL,
@@ -54,8 +51,8 @@ public class DatabaseUtil {
      */
     public static void createAdminsTable() {
         String sql = """
-                CREATE TABLE IF NOT EXISTS customers (
-                admin_id INTEGER NOT NULL PRIMARY KEY,
+                CREATE TABLE IF NOT EXISTS admins (
+                admin_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 first_name TEXT NOT NULL,
                 last_name TEXT NOT NULL,
                 email TEXT NOT NULL,
@@ -72,8 +69,8 @@ public class DatabaseUtil {
 
     public static void createDriversTable() {
         String sql = """
-                CREATE TABLE IF NOT EXISTS students (
-                driver_id INTEGER NOT NULL PRIMARY KEY,
+                CREATE TABLE IF NOT EXISTS drivers (
+                driver_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 first_name TEXT NOT NULL,
                 last_name TEXT NOT NULL,
                 email TEXT NOT NULL,
@@ -91,7 +88,7 @@ public class DatabaseUtil {
     public static void createOrderTable() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS orders (
-                order_id INTEGER NOT NULL PRIMARY KEY,
+                order_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 customer_id INTEGER NOT NULL,
                 total_price DOUBLE NOT NULL,
                 items TEXT NOT NULL,
@@ -107,27 +104,41 @@ public class DatabaseUtil {
         }
     }
 
+    public static void createFoodItemTable() {
+        String sql = """
+                CREATE TABLE IF NOT EXISTS items (
+                item_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                price DOUBLE NOT NULL
+                )
+                """;
+        try (Connection connection = getConnection();
+             Statement statement = getConnection().createStatement()) {
+            statement.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * insert into customers table
-     * @param customerId
      * @param firstName
      * @param lastName
      * @param email
      * @param phoneNumber
      */
-    public static void insertRecordsCustomers(int customerId, String firstName, String lastName, String email, String phoneNumber, String address, double balance) {
+    public static void insertRecordsCustomers(String firstName, String lastName, String email, String phoneNumber, Address address, double balance) {
         String sql = """
-                INSERT INTO customers(customer_id, first_name, last_name, address, email, phone_number, balance) VALUES (?, ?, ?, ?, ?, ?, ?)""";
+                INSERT INTO customers(first_name, last_name, address, email, phone_number, balance) VALUES (?, ?, ?, ?, ?, ?)""";
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, customerId);
-            statement.setString(2, firstName);
-            statement.setString(3, lastName);
-            statement.setString(4, address.toString());
-            statement.setString(5, email);
-            statement.setString(6, phoneNumber);
-            statement.setDouble(7, balance);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, address.toString());
+            statement.setString(4, email);
+            statement.setString(5, phoneNumber);
+            statement.setDouble(6, balance);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -139,35 +150,33 @@ public class DatabaseUtil {
      * @param customer the customer to be inserted
      */
     public static void insertRecordsCustomers(Customer customer) {
-        int customerId = customer.getCustomerId();
         String firstName = customer.getfName();
         String lastName = customer.getlName();
         String email = customer.getEmail();
         String phoneNumber = customer.getPhoneNumber();
-        String address = customer.getAddress();
+        Address address = customer.getAddress();
         double balance = customer.getBalance();
-        insertRecordsCustomers(customerId,firstName,lastName,email,phoneNumber, address,balance);
+        insertRecordsCustomers(firstName,lastName,email,phoneNumber, address,balance);
     }
 
     /**
      * insert into admins table
-     * @param adminId
+
      * @param fName
      * @param lName
      * @param phoneNumber
      * @param email
      */
-    public static void insertRecordsAdmins(int adminId, String fName, String lName, String phoneNumber, String email) {
+    public static void insertRecordsAdmins(String fName, String lName, String phoneNumber, String email) {
         String sql = """
-                INSERT INTO students(admin_id, first_name, last_name, phone_number, email) VALUES (?, ?, ?, ?, ?)""";
+                INSERT INTO admins(first_name, last_name, phone_number, email) VALUES (?, ?, ?, ?)""";
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, adminId);
-            statement.setString(2, fName);
-            statement.setString(3, lName);
-            statement.setString(4, email);
-            statement.setString(5, phoneNumber);
+            statement.setString(1, fName);
+            statement.setString(2, lName);
+            statement.setString(3, email);
+            statement.setString(4, phoneNumber);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -179,25 +188,23 @@ public class DatabaseUtil {
      * @param admin the admin to be inserted
      */
     public static void insertRecordsAdmins(Admin admin) {
-        int adminId = admin.getAdminId();
         String firstName = admin.getfName();
         String lastName = admin.getlName();
         String email = admin.getEmail();
         String phoneNumber = admin.getPhoneNumber();
-        insertRecordsAdmins(adminId, firstName, lastName, email, phoneNumber);
+        insertRecordsAdmins(firstName, lastName, email, phoneNumber);
     }
 
-    public static void insertRecordsDrivers(int driverId, String fName, String lName, String phoneNumber, String email) {
+    public static void insertRecordsDrivers(String fName, String lName, String phoneNumber, String email) {
         String sql = """
-                INSERT INTO students(admin_id, first_name, last_name, phone_number, email) VALUES (?, ?, ?, ?, ?)""";
+                INSERT INTO drivers(first_name, last_name, phone_number, email) VALUES (?, ?, ?, ?)""";
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, driverId);
-            statement.setString(2, fName);
-            statement.setString(3, lName);
-            statement.setString(4, email);
-            statement.setString(5, phoneNumber);
+            statement.setString(1, fName);
+            statement.setString(2, lName);
+            statement.setString(3, email);
+            statement.setString(4, phoneNumber);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -209,12 +216,55 @@ public class DatabaseUtil {
      * @param userDriver the driver to be inserted
      */
     public static void insertRecordsDrivers(UserDriver userDriver) {
-        int userDriverId = userDriver.getDriverId();
         String firstName = userDriver.getfName();
         String lastName = userDriver.getlName();
         String email = userDriver.getEmail();
         String phoneNumber = userDriver.getPhoneNumber();
-        insertRecordsDrivers(userDriverId, firstName, lastName, email, phoneNumber);
+        insertRecordsDrivers(firstName, lastName, email, phoneNumber);
+    }
+
+    public static void insertRecordsOrders(int customerId, double totalPrice , String items, String status) {
+        String sql = """
+                INSERT INTO orders(customer_id, total_price, items, status) VALUES (?, ?, ?, ?)""";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, customerId);
+            statement.setDouble(2, totalPrice);
+            statement.setString(3, items);
+            statement.setString(4, status);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void insertRecordsOrders(Order order) {
+        int customerId = order.getCustomer().getCustomerId();
+        double totalPrice = order.getPrice();
+        String items = order.getItems().toString();
+        String status = order.getProcessStatus();
+        insertRecordsOrders(customerId, totalPrice, items, status);
+    }
+
+    public static void insertRecordsItems(String name, double price) {
+        String sql = """
+                INSERT INTO items(name, price) VALUES (?, ?)""";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, name);
+            statement.setDouble(2, price);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void insertRecordsItems(FoodItem item) {
+        String itemName = item.getName();
+        double price = item.getPrice();
+        insertRecordsItems(itemName, price);
     }
 
     /**
@@ -238,7 +288,7 @@ public class DatabaseUtil {
                 String phoneNumber = resultSet.getString( "phone_number");
                 double balance = resultSet.getDouble( "balance");
 
-                customers.add(new Customer(customerId, firstName, lastName, address, email, phoneNumber, balance));
+                customers.add(new Customer(customerId, firstName, lastName, email, phoneNumber, balance, address));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -293,5 +343,46 @@ public class DatabaseUtil {
         }
         return drivers;
     }
+    public static List<Order> queryAllOrders() {
+        String sql = """
+                SELECT * FROM orders """;
+        List<Order> orders = new ArrayList<>();
+        try (Connection connection = getConnection();
+             Statement statement = getConnection().createStatement();
+             ResultSet resultSet = statement.executeQuery(sql);)
+        {
+            while (resultSet.next()) {
+                int orderId = resultSet.getInt( "order_id");
+                int customerId = resultSet.getInt( "customer_id");
+                double totalPrice= resultSet.getDouble( "total_price");
+                String items = resultSet.getString( "items");
+                String status = resultSet.getString( "status");
+                orders.add(new Order(orderId, customerId, totalPrice, items, status));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
 
+    public static List<FoodItem> queryAllItems() {
+        String sql = """
+                SELECT * FROM items """;
+        List<FoodItem> foodItems = new ArrayList<>();
+        try (Connection connection = getConnection();
+             Statement statement = getConnection().createStatement();
+             ResultSet resultSet = statement.executeQuery(sql);)
+        {
+            while (resultSet.next()) {
+                int itemId = resultSet.getInt( "item_id");
+                String name = resultSet.getString( "name");
+                double price= resultSet.getDouble( "price");
+
+                foodItems.add(new FoodItem(itemId, name, price));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return foodItems;
+    }
 }
