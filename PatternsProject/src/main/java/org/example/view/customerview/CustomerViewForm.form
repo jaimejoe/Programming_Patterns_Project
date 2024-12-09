@@ -16,7 +16,7 @@
           <text value="Customer Options"/>
         </properties>
       </component>
-      <component id="6a2b1" class="javax.swing.JButton" binding="orderBtn">
+      <component id="6a2b1" class="javax.swing.JButton" binding="orderButton">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -24,12 +24,12 @@
           <text value="Order"/>
         </properties>
       </component>
-      <component id="4103" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+      <component id="4103" class="javax.swing.JButton" binding="cancelOrderButton">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Cancel"/>
+          <text value="Cancel Order"/>
         </properties>
       </component>
       <component id="3ed4c" class="javax.swing.JButton" binding="viewOrdersButton" default-binding="true">

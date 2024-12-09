@@ -29,6 +29,6 @@ public class Main {
 //        insertRecordsCustomers(customer1);
 //        insertRecordsAdmins(admin1);
 //        insertRecordsDrivers(driver1);
-//        MainFrameForm view = new MainFrameForm();
+       MainFrameForm view = new MainFrameForm();
     }
 }

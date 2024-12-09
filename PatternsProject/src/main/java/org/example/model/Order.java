@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -14,6 +15,7 @@ public class Order {
     public String processStatus;
 
     public Order() {
+        this.items = new ArrayList<FoodItem>();
     }
 
     public Order(Customer customer, double price, List<FoodItem> items, String processStatus) {

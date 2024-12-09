@@ -14,6 +14,12 @@ public class MainFrameForm extends JFrame {
     private JButton adminButton;
     private JButton driverButton;
     private JPanel mainPanel;
+    private JTextField textField1;
+    private JButton submitButton1;
+    private JTextField textField2;
+    private JButton submitButton2;
+    private JTextField textField3;
+    private JButton submitButton3;
 
     public MainFrameForm() throws HeadlessException {
         setContentPane(mainPanel);
