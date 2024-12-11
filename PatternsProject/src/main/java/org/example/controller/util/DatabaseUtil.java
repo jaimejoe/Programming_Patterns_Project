@@ -1,4 +1,4 @@
-package org.example.util;
+package org.example.controller.util;
 
 import org.example.model.*;
 
@@ -365,6 +365,28 @@ public class DatabaseUtil {
         return orders;
     }
 
+    public static List<Order> queryOrdersByCustomerId(int customerId) {
+        String sql = """
+            SELECT * FROM orders WHERE customer_id = ?
+            """;
+        List<Order> orders = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, customerId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int orderId = resultSet.getInt("order_id");
+                double totalPrice = resultSet.getDouble("total_price");
+                String items = resultSet.getString("items");
+                String status = resultSet.getString("status");
+                orders.add(new Order(orderId, customerId, totalPrice, items, status));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
+
     public static List<FoodItem> queryAllItems() {
         String sql = """
                 SELECT * FROM items """;
@@ -384,5 +406,30 @@ public class DatabaseUtil {
             throw new RuntimeException(e);
         }
         return foodItems;
+    }
+
+    public static void deleteOrder(int orderId) {
+        String sql = "DELETE FROM orders WHERE order_id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, orderId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void updateCustomerBalance(int customerId, double newBalance) {
+        String sql = "UPDATE customers SET balance = ? WHERE customer_id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setDouble(1, newBalance);
+            statement.setInt(2, customerId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,4 +1,7 @@
 package org.example.view.adminview;
 
-public class AdminViewOrders {
+import javax.swing.*;
+
+public class AdminViewOrders extends JFrame {
+    
 }

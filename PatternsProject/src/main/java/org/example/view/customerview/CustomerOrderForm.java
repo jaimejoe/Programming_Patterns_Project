@@ -1,8 +1,10 @@
 package org.example.view.customerview;
 
 import org.example.controller.FoodItemFactory;
+import org.example.model.Customer;
 import org.example.model.FoodItem;
 import org.example.model.Order;
+import org.example.controller.util.DatabaseUtil;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,17 +18,16 @@ public class CustomerOrderForm extends JFrame {
     private JButton saladButton;
     private JButton hotDogButton;
     private JButton submitButton;
-
-    // Create an order instance
     private Order order;
 
-    public CustomerOrderForm() {
+    public CustomerOrderForm(Customer customer) {
+        order = new Order();
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        order = new Order();
-        order.setProcessStatus("Pending"); // Set initial status
+        order.setCustomer(customer);
+        order.setProcessStatus("Pending");
 
         // Add action listeners for buttons
         pizzaButton.addActionListener(new ActionListener() {
@@ -60,10 +61,16 @@ public class CustomerOrderForm extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle payment process here
+                if (customer.getBalance() > order.getPrice()) {
                 JOptionPane.showMessageDialog(mainPanel, "Proceeding to payment. Total: $" + order.getPrice());
-                order.setItems(new ArrayList<>()); // Clear items after payment
-                order.setPrice(0); // Reset price
+                customer.setBalance(customer.getBalance() - order.getPrice());
+                DatabaseUtil.insertRecordsOrders(order);
+                DatabaseUtil.updateCustomerBalance(customer.getCustomerId(), customer.getBalance());
+                } else {
+                    JOptionPane.showMessageDialog(mainPanel, "Insufficient funds.");
+                }
+                order.setItems(new ArrayList<>());
+                order.setPrice(0);
             }
         });
     }
