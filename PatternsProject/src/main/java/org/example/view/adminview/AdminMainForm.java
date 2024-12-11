@@ -36,5 +36,13 @@ public class AdminMainForm extends JFrame{
                 cancelForm.setVisible(true);
             }
         });
+        processBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                AdminProcessOrderForm processForm = new AdminProcessOrderForm();
+                processForm.setVisible(true);
+            }
+        });
     }
 }
