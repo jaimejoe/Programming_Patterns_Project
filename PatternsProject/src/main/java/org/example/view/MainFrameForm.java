@@ -6,8 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import org.example.model.Admin;
 import org.example.model.Customer;
 import org.example.controller.util.DatabaseUtil;
+import org.example.model.Order;
+import org.example.view.adminview.AdminMainForm;
 import org.example.view.customerview.CustomerMainForm;
 
 public class MainFrameForm extends JFrame {
@@ -65,6 +68,19 @@ public class MainFrameForm extends JFrame {
                 for (Customer customer : customers) {
                     if (customer.getCustomerId() == Integer.parseInt(customerTextField.getText())) {
                         new CustomerMainForm(customer);
+                        dispose();
+                        return;
+                    }
+                }
+            }
+        });
+        submitButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<Admin> admins = DatabaseUtil.queryAllAdmins();
+                for (Admin admin : admins) {
+                    if (admin.getAdminId() == Integer.parseInt(adminTextField.getText())) {
+                        new AdminMainForm(admin);
                         dispose();
                         return;
                     }

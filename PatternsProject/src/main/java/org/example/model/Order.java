@@ -28,6 +28,7 @@ public class Order {
 
     public Order(int orderId, int customerId , double price, String items, String processStatus) {
         this.orderId = orderId;
+        this.customerId = customerId;
         this.price = price;
         this.itemsString = items;
         this.processStatus = processStatus;
@@ -85,4 +86,11 @@ public class Order {
         this.processStatus = processStatus;
     }
 
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 }
