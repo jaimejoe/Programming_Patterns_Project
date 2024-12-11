@@ -28,5 +28,13 @@ public class AdminMainForm extends JFrame{
                 viewForm.setVisible(true);
             }
         });
+        cancelBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                AdminCancelOrderForm cancelForm = new AdminCancelOrderForm();
+                cancelForm.setVisible(true);
+            }
+        });
     }
 }

@@ -432,4 +432,17 @@ public class DatabaseUtil {
             throw new RuntimeException(e);
         }
     }
+
+    public static void updateOrderStatus(int orderId, String status) {
+        String sql = "UPDATE orders SET status = ? WHERE order_id = ?";
+
+        try (Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, status);
+            statement.setInt(2, orderId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -25,9 +25,7 @@ public class CustomerCancelForm extends JFrame {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Order order : orders) {
             order.setCustomer(customer);
-            if (order.getCustomer().getCustomerId() == customer.getCustomerId()) {
-                listModel.addElement("Order ID: " + order.getOrderId() + ", Total: $" + order.getPrice());
-            }
+            listModel.addElement("Order ID: " + order.getOrderId() + ", Total: $" + order.getPrice());
         }
         orderList.setModel(listModel);
 

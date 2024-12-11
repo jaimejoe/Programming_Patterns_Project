@@ -29,7 +29,6 @@ public class CustomerOrderForm extends JFrame {
         order.setCustomer(customer);
         order.setProcessStatus("Pending");
 
-        // Add action listeners for buttons
         pizzaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,18 +78,16 @@ public class CustomerOrderForm extends JFrame {
         MealSelectionDialog dialog = new MealSelectionDialog();
         dialog.setVisible(true);
 
-        // Assuming MealSelectionDialog has a method to get the user's choice
-        boolean isMealSelected = dialog.isMealSelected(); // You need to implement this method in MealSelectionDialog
+        boolean isMealSelected = dialog.isMealSelected();
 
         if (isMealSelected) {
-            double mealPrice = item.getPrice() * 1.5; // Increase price by 1.5 times
-            item.setPrice(mealPrice); // Update the price for the meal
+            double mealPrice = item.getPrice() * 1.5;
+            item.setPrice(mealPrice);
             JOptionPane.showMessageDialog(mainPanel, "Meal selected: " + item.getName() + " - Price: $" + mealPrice);
         } else {
             JOptionPane.showMessageDialog(mainPanel, "Single item selected: " + item.getName() + " - Price: $" + item.getPrice());
         }
 
-        // Add the item to the order
         order.getItems().add(item);
         order.setPrice(order.getPrice() + item.getPrice());
         JOptionPane.showMessageDialog(mainPanel, item.getName() + " added to order. Total: $" + order.getPrice());
