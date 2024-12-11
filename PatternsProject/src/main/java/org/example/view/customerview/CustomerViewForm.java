@@ -16,7 +16,6 @@ public class CustomerViewForm extends JFrame{
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
         List<Order> orders = DatabaseUtil.queryOrdersByCustomerId(customer.getCustomerId());
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Order order : orders) {

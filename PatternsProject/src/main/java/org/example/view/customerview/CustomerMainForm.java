@@ -18,31 +18,6 @@ public class CustomerMainForm extends JFrame {
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setVisible(true);
-        orderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                CustomerOrderForm orderForm = new CustomerOrderForm(customer);
-                orderForm.setVisible(true);
-            }
-        });
-        cancelOrderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                CustomerCancelForm cancelForm = new CustomerCancelForm(customer);
-                cancelForm.setVisible(true);
-            }
-        });
-        viewOrdersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                CustomerViewForm viewForm = new CustomerViewForm(customer);
-                viewForm.setVisible(true);
-            }
-        });
     }
 
     public JPanel getMainPanel() {
