@@ -15,8 +15,10 @@ public class DriverDeliverForm extends JFrame {
     private JList orderList;
     private JButton deliverButton;
     private JTextField idTextField;
+    public UserDriver driver;
 
     public DriverDeliverForm(UserDriver userDriver) {
+        this.driver = userDriver;
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,21 +30,10 @@ public class DriverDeliverForm extends JFrame {
                     ", Status: " + order.getProcessStatus());
         }
         orderList.setModel(listModel);
-        deliverButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String orderIdText = idTextField.getText();
-                try {
-                    int orderId = Integer.parseInt(orderIdText);
-                    DatabaseUtil.updateOrderStatus(orderId, "Delivered");
-                    DatabaseUtil.updateDeliveredBy(orderId, userDriver.getfName()
-                            + " " + userDriver.getlName());
-                    JOptionPane.showMessageDialog(mainPanel, "Order Delivered.");
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(mainPanel, "Please enter a valid order ID.");
-                }
-            }
-        });
+    }
+
+    public UserDriver getDriver() {
+        return driver;
     }
 
     public JPanel getMainPanel() {

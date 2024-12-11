@@ -76,7 +76,9 @@ public class MainFrameController {
                 List<UserDriver> drivers = DatabaseUtil.queryAllDrivers();
                 for (UserDriver driver : drivers) {
                     if (driver.driverId == Integer.parseInt(mainFrameForm.getDriverTextField().getText())) {
-                        new DriverMainFormController(new DriverMainForm(driver), driver);
+                        DriverMainForm driverMainForm = new DriverMainForm(driver);
+                        DriverMainFormController driverMainFormController =
+                                new DriverMainFormController(driverMainForm, driver);
                         mainFrameForm.dispose();
                     }
                 }

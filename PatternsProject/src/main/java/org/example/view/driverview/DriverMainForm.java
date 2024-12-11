@@ -17,14 +17,6 @@ public class DriverMainForm extends JFrame {
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        deliverButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                DriverDeliverForm deliverForm = new DriverDeliverForm(userDriver);
-                deliverForm.setVisible(true);
-            }
-        });
     }
 
     public JPanel getMainPanel() {

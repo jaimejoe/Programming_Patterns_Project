@@ -20,7 +20,8 @@ public class AdminViewOrders extends JFrame {
         List<Order> orders = DatabaseUtil.queryAllOrders();
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Order order : orders) {
-            listModel.addElement("Order ID: " + order.getOrderId() + ", Customer ID: " + order.getCustomerId() + ", Total: $" + order.getPrice());
+            listModel.addElement("Order ID: " + order.getOrderId() + ", Customer ID: " + order.getCustomerId()
+                    + ", Total: $" + order.getPrice() + ", Status: " + order.getProcessStatus());
         }
         orderList.setModel(listModel);
     }
