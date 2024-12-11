@@ -4,8 +4,6 @@ import org.example.model.Customer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class CustomerMainForm extends JFrame {
     private JPanel mainPanel;
@@ -13,11 +11,15 @@ public class CustomerMainForm extends JFrame {
     private JButton orderButton;
     private JButton cancelOrderButton;
     private JButton viewOrdersButton;
+    private JButton backButton;
 
     public CustomerMainForm(Customer customer) throws HeadlessException {
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }
+    public JButton getBackButton() {
+        return backButton;
     }
 
     public JPanel getMainPanel() {

@@ -5,8 +5,6 @@ import org.example.model.Customer;
 import org.example.model.Order;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class CustomerCancelForm extends JFrame {
@@ -15,6 +13,7 @@ public class CustomerCancelForm extends JFrame {
     private JButton cancelButton;
     private JLabel idLabel;
     private JPanel mainPanel;
+    private JButton backButton;
 
     public CustomerCancelForm(Customer customer) {
         setContentPane(mainPanel);
@@ -29,6 +28,9 @@ public class CustomerCancelForm extends JFrame {
         }
         orderList.setModel(listModel);
 
+    }
+    public JButton getBackButton() {
+        return backButton;
     }
 
     public JList getOrderList() {

@@ -67,6 +67,9 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * creates drivers table
+     */
     public static void createDriversTable() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS drivers (
@@ -85,6 +88,9 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * creates orders table
+     */
     public static void createOrderTable() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS orders (
@@ -105,6 +111,9 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * creates items table
+     */
     public static void createFoodItemTable() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS items (
@@ -123,10 +132,10 @@ public class DatabaseUtil {
 
     /**
      * insert into customers table
-     * @param firstName
-     * @param lastName
-     * @param email
-     * @param phoneNumber
+     * @param firstName first name of customer
+     * @param lastName last name of customer
+     * @param email email of customer
+     * @param phoneNumber phone number of customer
      */
     public static void insertRecordsCustomers(String firstName, String lastName, String email, String phoneNumber, Address address, double balance) {
         String sql = """
@@ -163,10 +172,10 @@ public class DatabaseUtil {
     /**
      * insert into admins table
 
-     * @param fName
-     * @param lName
-     * @param phoneNumber
-     * @param email
+     * @param fName first name of admin
+     * @param lName last name of admin
+     * @param phoneNumber phone number of admin
+     * @param email email of admin
      */
     public static void insertRecordsAdmins(String fName, String lName, String phoneNumber, String email) {
         String sql = """
@@ -224,6 +233,13 @@ public class DatabaseUtil {
         insertRecordsDrivers(firstName, lastName, email, phoneNumber);
     }
 
+    /**
+     * Insert records into orders table
+     * @param customerId id of customer
+     * @param totalPrice price of order, all items
+     * @param items all the food items
+     * @param status processing status of order
+     */
     public static void insertRecordsOrders(int customerId, double totalPrice , String items, String status) {
         String sql = """
                 INSERT INTO orders(customer_id, total_price, items, status) VALUES (?, ?, ?, ?)""";
@@ -240,6 +256,10 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * insert records into orders table
+     * @param order order to insert
+     */
     public static void insertRecordsOrders(Order order) {
         int customerId = order.getCustomer().getCustomerId();
         double totalPrice = order.getPrice();
@@ -248,6 +268,11 @@ public class DatabaseUtil {
         insertRecordsOrders(customerId, totalPrice, items, status);
     }
 
+    /**
+     * insert into items table
+     * @param name name of item
+     * @param price price of item
+     */
     public static void insertRecordsItems(String name, double price) {
         String sql = """
                 INSERT INTO items(name, price) VALUES (?, ?)""";
@@ -262,6 +287,10 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * insert into items table
+     * @param item item to insert
+     */
     public static void insertRecordsItems(FoodItem item) {
         String itemName = item.getName();
         double price = item.getPrice();
@@ -298,7 +327,7 @@ public class DatabaseUtil {
     }
 
     /**
-     * query all admims into a list
+     * query all admins into a list
      * @return the list of all admins
      */
     public static List<Admin> queryAllAdmins() {
@@ -323,6 +352,10 @@ public class DatabaseUtil {
         return admins;
     }
 
+    /**
+     * query all drivers
+     * @return list of all drivers
+     */
     public static List<UserDriver> queryAllDrivers() {
         String sql = """
                 SELECT * FROM drivers """;
@@ -344,6 +377,11 @@ public class DatabaseUtil {
         }
         return drivers;
     }
+
+    /**
+     * query all orders
+     * @return list of all orders
+     */
     public static List<Order> queryAllOrders() {
         String sql = """
                 SELECT * FROM orders """;
@@ -366,6 +404,11 @@ public class DatabaseUtil {
         return orders;
     }
 
+    /**
+     * query orders by specified customer id
+     * @param customerId customer id to query
+     * @return list of orders with the customer id specified
+     */
     public static List<Order> queryOrdersByCustomerId(int customerId) {
         String sql = """
             SELECT * FROM orders WHERE customer_id = ?
@@ -387,6 +430,11 @@ public class DatabaseUtil {
         }
         return orders;
     }
+
+    /**
+     * query all orders with status 'Processed'
+     * @return List of orders with status 'Processed'
+     */
     public static List<Order> queryProcessedOrders() {
     String sql = """
             SELECT * FROM orders WHERE status = 'Processed'""";
@@ -409,6 +457,10 @@ public class DatabaseUtil {
         return orders;
     }
 
+    /**
+     * query all items
+     * @return list of all items
+     */
     public static List<FoodItem> queryAllItems() {
         String sql = """
                 SELECT * FROM items """;
@@ -430,6 +482,10 @@ public class DatabaseUtil {
         return foodItems;
     }
 
+    /**
+     * removes order with corresponding id
+     * @param orderId order to remove
+     */
     public static void deleteOrder(int orderId) {
         String sql = "DELETE FROM orders WHERE order_id = ?";
 
@@ -442,6 +498,11 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * update customer balance
+     * @param customerId customer to update
+     * @param newBalance updated balance
+     */
     public static void updateCustomerBalance(int customerId, double newBalance) {
         String sql = "UPDATE customers SET balance = ? WHERE customer_id = ?";
 
@@ -455,6 +516,11 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * update order status of an order
+     * @param orderId order to update status
+     * @param status status to change
+     */
     public static void updateOrderStatus(int orderId, String status) {
         String sql = "UPDATE orders SET status = ? WHERE order_id = ?";
 

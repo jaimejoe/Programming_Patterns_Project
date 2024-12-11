@@ -5,6 +5,7 @@ import org.example.controller.util.DatabaseUtil;
 import org.example.model.Customer;
 import org.example.model.FoodItem;
 import org.example.model.Order;
+import org.example.view.customerview.CustomerMainForm;
 import org.example.view.customerview.CustomerOrderForm;
 import org.example.view.customerview.MealSelectionDialog;
 
@@ -26,6 +27,7 @@ public class CustomerOrderFormController {
         this.mainPanel = customerOrderForm.getMainPanel();
         customerOrderForm.setVisible(true);
 
+        //When Pizza button pressed, add pizza to order
         customerOrderForm.getPizzaButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,6 +35,7 @@ public class CustomerOrderFormController {
             }
         });
 
+        //When burger button pressed, add burger to order
         customerOrderForm.getBurgerButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,6 +43,7 @@ public class CustomerOrderFormController {
             }
         });
 
+        //When Salad button pressed, add Salad to order
         customerOrderForm.getSaladButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,6 +51,7 @@ public class CustomerOrderFormController {
             }
         });
 
+        //When Hotdog button pressed, add Hotdog to order
         customerOrderForm.getHotDogButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,6 +59,7 @@ public class CustomerOrderFormController {
             }
         });
 
+        //When submit button pressed, change balance, change status to pending, insert into db, update db
         customerOrderForm.getSubmitButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,8 +76,19 @@ public class CustomerOrderFormController {
                 order.setPrice(0);
             }
         });
+        customerOrderForm.getBackButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                customerOrderForm.dispose();
+                CustomerMainFormController newForm = new CustomerMainFormController(new CustomerMainForm(customer),customer);
+            }
+        });
     }
 
+    /**
+     * When any button is pressed, choice between meal or single item, meal adds 1.5x more to price
+     * @param item
+     */
     private void mealSelection(FoodItem item) {
         MealSelectionDialog dialog = new MealSelectionDialog();
         dialog.setVisible(true);

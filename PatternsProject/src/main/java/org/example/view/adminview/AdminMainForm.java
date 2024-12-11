@@ -1,12 +1,8 @@
 package org.example.view.adminview;
 
 import org.example.model.Admin;
-import org.example.view.customerview.CustomerViewForm;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AdminMainForm extends JFrame{
     private JLabel titleLabel;
@@ -14,6 +10,7 @@ public class AdminMainForm extends JFrame{
     private JButton cancelBtn;
     private JButton viewOrdersBtn;
     private JPanel mainPanel;
+    private JButton backButton;
 
     public AdminMainForm(Admin admin) {
         setContentPane(mainPanel);
@@ -39,5 +36,9 @@ public class AdminMainForm extends JFrame{
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 }

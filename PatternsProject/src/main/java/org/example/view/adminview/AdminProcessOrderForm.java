@@ -4,8 +4,6 @@ import org.example.controller.util.DatabaseUtil;
 import org.example.model.Order;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class AdminProcessOrderForm extends JFrame {
@@ -15,6 +13,7 @@ public class AdminProcessOrderForm extends JFrame {
     private JTextField idTextField;
     private JButton processButton;
     private JLabel idLabel;
+    private JButton backButton;
 
     public AdminProcessOrderForm() {
         setContentPane(mainPanel);
@@ -29,6 +28,10 @@ public class AdminProcessOrderForm extends JFrame {
         }
         orderList.setModel(listModel);
 
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 
     public JPanel getMainPanel() {

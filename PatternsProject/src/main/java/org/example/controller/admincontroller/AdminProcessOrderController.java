@@ -2,6 +2,7 @@ package org.example.controller.admincontroller;
 
 import org.example.controller.util.DatabaseUtil;
 import org.example.model.Admin;
+import org.example.view.adminview.AdminMainForm;
 import org.example.view.adminview.AdminProcessOrderForm;
 
 import javax.swing.*;
@@ -17,6 +18,7 @@ public class AdminProcessOrderController {
         this.admin = admin;
         form.setVisible(true);
 
+//        When process button pressed with corresponding id in textfield, change order status to "Processed"
         form.getProcessButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -28,6 +30,13 @@ public class AdminProcessOrderController {
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(form.getMainPanel(), "Please enter a valid order ID.");
                 }
+            }
+        });
+        form.getBackButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                form.dispose();
+                AdminMainFormController newForm = new AdminMainFormController(new AdminMainForm(admin),admin);
             }
         });
     }

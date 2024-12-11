@@ -4,8 +4,6 @@ import org.example.controller.util.DatabaseUtil;
 import org.example.model.Order;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class AdminCancelOrderForm extends JFrame {
@@ -14,7 +12,7 @@ public class AdminCancelOrderForm extends JFrame {
     private JButton cancelButton;
     private JLabel idLabel;
     private JPanel mainPanel;
-
+    private JButton backButton;
 
 
     public AdminCancelOrderForm() {
@@ -30,6 +28,11 @@ public class AdminCancelOrderForm extends JFrame {
         orderList.setModel(listModel);
 
     }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
     public JList getOrderList() {
         return orderList;
     }

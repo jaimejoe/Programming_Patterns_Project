@@ -22,7 +22,9 @@ public class MainFrameController {
     public MainFrameController(MainFrameForm mainFrameForm) {
         this.mainFrameForm = mainFrameForm;
         mainFrameForm.setVisible(true);
-        this.mainFrameForm.getCustomerButton().addActionListener(new ActionListener() {
+
+        // When customer button pressed, open to customer textfield
+        mainFrameForm.getCustomerButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrameForm.getCustomerTextField().setVisible(true);
@@ -30,14 +32,16 @@ public class MainFrameController {
             }
         });
 
-        this.mainFrameForm.getAdminButton().addActionListener(new ActionListener() {
+        //When Admin button pressed, open to admin textfield
+        mainFrameForm.getAdminButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrameForm.getAdminTextField().setVisible(true);
                 mainFrameForm.getSubmitButton2().setVisible(true);
             }
         });
-        this.mainFrameForm.getDriverButton().addActionListener(new ActionListener() {
+        //When Driver button pressed open to driver text field
+        mainFrameForm.getDriverButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -45,7 +49,7 @@ public class MainFrameController {
                 mainFrameForm.getSubmitButton3().setVisible(true);
             }
         });
-
+// When customer button pressed, send to CustomerMainForm
         mainFrameForm.getSubmitButton1().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +62,7 @@ public class MainFrameController {
                 }
             }
         });
+        //When Admin button pressed, send to AdminMainForm
         mainFrameForm.getSubmitButton2().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,6 +75,7 @@ public class MainFrameController {
                 }
             }
         });
+        //When Driver button pressed send to DriverMainForm
         mainFrameForm.getSubmitButton3().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

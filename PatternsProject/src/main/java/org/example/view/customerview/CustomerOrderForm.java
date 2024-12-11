@@ -1,15 +1,9 @@
 package org.example.view.customerview;
 
-import org.example.controller.FoodItemFactory;
 import org.example.model.Customer;
-import org.example.model.FoodItem;
 import org.example.model.Order;
-import org.example.controller.util.DatabaseUtil;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class CustomerOrderForm extends JFrame {
     private JPanel mainPanel;
@@ -18,6 +12,7 @@ public class CustomerOrderForm extends JFrame {
     private JButton saladButton;
     private JButton hotDogButton;
     private JButton submitButton;
+    private JButton backButton;
     private Order order;
 
     public CustomerOrderForm(Customer customer) {
@@ -27,6 +22,10 @@ public class CustomerOrderForm extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         order.setCustomer(customer);
 
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 
     public JPanel getMainPanel() {

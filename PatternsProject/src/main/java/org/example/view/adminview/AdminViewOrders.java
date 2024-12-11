@@ -4,13 +4,14 @@ import org.example.controller.util.DatabaseUtil;
 import org.example.model.Order;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 public class AdminViewOrders extends JFrame {
     private JList orderList;
     private JPanel panel1;
     private JLabel orderLabel;
+    private JButton backButton;
+    private JEditorPane editorPane1;
 
     public AdminViewOrders() {
         setContentPane(panel1);
@@ -36,5 +37,9 @@ public class AdminViewOrders extends JFrame {
 
     public JLabel getOrderLabel() {
         return orderLabel;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 }

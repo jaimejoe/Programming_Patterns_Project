@@ -18,6 +18,9 @@ public class AdminMainFormController {
         this.admin = admin;
         form.setVisible(true);
 
+
+//       when view orders button pressed, send to AdminViewForm
+
         form.getViewOrdersBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -26,6 +29,9 @@ public class AdminMainFormController {
                 AdminViewFormController viewFormController = new AdminViewFormController(viewForm, admin);
             }
         });
+
+
+        //When cancel button pressed, send to AdminCancelForm
         form.getCancelBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,12 +40,20 @@ public class AdminMainFormController {
                 AdminCancelOrderController cancelFormController = new AdminCancelOrderController(cancelForm, admin);
             }
         });
+//        When process button pressed, send to AdminViewForm
         form.getProcessBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 form.dispose();
                 AdminProcessOrderForm processForm = new AdminProcessOrderForm();
                 AdminProcessOrderController processFormController = new AdminProcessOrderController(processForm, admin);
+            }
+        });
+        form.getBackButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                form.dispose();
+                AdminMainFormController newForm = new AdminMainFormController(new AdminMainForm(admin),admin);
             }
         });
     }

@@ -5,9 +5,6 @@ import org.example.model.Order;
 import org.example.model.UserDriver;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class DriverDeliverForm extends JFrame {
@@ -15,6 +12,7 @@ public class DriverDeliverForm extends JFrame {
     private JList orderList;
     private JButton deliverButton;
     private JTextField idTextField;
+    private JButton backButton;
     public UserDriver driver;
 
     public DriverDeliverForm(UserDriver userDriver) {
@@ -50,5 +48,9 @@ public class DriverDeliverForm extends JFrame {
 
     public JTextField getIdTextField() {
         return idTextField;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 }

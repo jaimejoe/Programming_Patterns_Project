@@ -11,6 +11,7 @@ public class CustomerViewForm extends JFrame{
     private JList orderList;
     private JPanel mainPanel;
     private JLabel orderLabel;
+    private JButton backButton;
 
     public CustomerViewForm(Customer customer) {
         setContentPane(mainPanel);
@@ -35,5 +36,9 @@ public class CustomerViewForm extends JFrame{
 
     public JLabel getOrderLabel() {
         return orderLabel;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 }

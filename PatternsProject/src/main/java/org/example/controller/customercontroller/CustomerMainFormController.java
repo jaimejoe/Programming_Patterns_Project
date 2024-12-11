@@ -1,6 +1,8 @@
 package org.example.controller.customercontroller;
 
+import org.example.controller.MainFrameController;
 import org.example.model.Customer;
+import org.example.view.MainFrameForm;
 import org.example.view.customerview.CustomerCancelForm;
 import org.example.view.customerview.CustomerMainForm;
 import org.example.view.customerview.CustomerOrderForm;
@@ -18,6 +20,7 @@ public class CustomerMainFormController {
         this.customer = customer;
         customerMainForm.setVisible(true);
 
+//        When Order button pressed, send to CustomerOrderForm
         customerMainForm.getOrderButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -26,6 +29,7 @@ public class CustomerMainFormController {
                 new CustomerOrderFormController(orderForm, customer);
             }
         });
+//        When Cancel button pressed, send to CustomerCancelOrderForm
         customerMainForm.getCancelOrderButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,12 +38,21 @@ public class CustomerMainFormController {
                 new CustomerCancelOrderController(cancelForm, customer);
             }
         });
+//        When View button pressed, send to CustomerViewForm
         customerMainForm.getViewOrdersButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 customerMainForm.dispose();
                 CustomerViewForm viewForm = new CustomerViewForm(customer);
                 new CustomerViewFormController(viewForm, customer);
+            }
+        });
+
+        customerMainForm.getBackButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                customerMainForm.dispose();
+                MainFrameController newForm = new MainFrameController(new MainFrameForm());
             }
         });
     }
