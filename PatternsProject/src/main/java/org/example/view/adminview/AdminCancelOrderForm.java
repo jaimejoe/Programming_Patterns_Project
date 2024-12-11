@@ -29,21 +29,6 @@ public class AdminCancelOrderForm extends JFrame {
         }
         orderList.setModel(listModel);
 
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String orderIdText = idTextField.getText();
-                try {
-                    int orderId = Integer.parseInt(orderIdText);
-                    DatabaseUtil.deleteOrder(orderId);
-                    JOptionPane.showMessageDialog(mainPanel, "Order cancelled.");
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(mainPanel, "Please enter a valid order ID.");
-                }
-            }
-        });
-
-
     }
     public JList getOrderList() {
         return orderList;

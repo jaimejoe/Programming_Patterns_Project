@@ -29,19 +29,6 @@ public class AdminProcessOrderForm extends JFrame {
         }
         orderList.setModel(listModel);
 
-        processButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String orderIdText = idTextField.getText();
-                try {
-                    int orderId = Integer.parseInt(orderIdText);
-                    DatabaseUtil.updateOrderStatus(orderId, "Processed");
-                    JOptionPane.showMessageDialog(mainPanel, "Order Processed.");
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(mainPanel, "Please enter a valid order ID.");
-                }
-            }
-        });
     }
 
     public JPanel getMainPanel() {

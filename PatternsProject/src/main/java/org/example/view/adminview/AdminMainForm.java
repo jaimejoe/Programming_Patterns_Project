@@ -15,35 +15,10 @@ public class AdminMainForm extends JFrame{
     private JButton viewOrdersBtn;
     private JPanel mainPanel;
 
-    public AdminMainForm(Admin admin){
+    public AdminMainForm(Admin admin) {
         setContentPane(mainPanel);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        viewOrdersBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                AdminViewOrders viewForm = new AdminViewOrders();
-                viewForm.setVisible(true);
-            }
-        });
-        cancelBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                AdminCancelOrderForm cancelForm = new AdminCancelOrderForm();
-                cancelForm.setVisible(true);
-            }
-        });
-        processBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                AdminProcessOrderForm processForm = new AdminProcessOrderForm();
-                processForm.setVisible(true);
-            }
-        });
     }
 
     public JLabel getTitleLabel() {
