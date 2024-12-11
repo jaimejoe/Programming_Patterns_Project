@@ -93,6 +93,7 @@ public class DatabaseUtil {
                 total_price DOUBLE NOT NULL,
                 items TEXT NOT NULL,
                 status TEXT NOT NULL,
+                delivered_by TEXT,
                 FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
                 )
                 """;
@@ -386,6 +387,27 @@ public class DatabaseUtil {
         }
         return orders;
     }
+    public static List<Order> queryProcessedOrders() {
+    String sql = """
+            SELECT * FROM orders WHERE status = 'Processed'""";
+        List<Order> orders = new ArrayList<>();
+        try (Connection connection = getConnection();
+             Statement statement = getConnection().createStatement();
+             ResultSet resultSet = statement.executeQuery(sql);)
+        {
+            while (resultSet.next()) {
+                int orderId = resultSet.getInt( "order_id");
+                int customerId = resultSet.getInt( "customer_id");
+                double totalPrice= resultSet.getDouble( "total_price");
+                String items = resultSet.getString( "items");
+                String status = resultSet.getString( "status");
+                orders.add(new Order(orderId, customerId, totalPrice, items, status));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
 
     public static List<FoodItem> queryAllItems() {
         String sql = """
@@ -439,6 +461,19 @@ public class DatabaseUtil {
         try (Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, status);
+            statement.setInt(2, orderId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void  updateDeliveredBy(int orderId, String deliveredBy) {
+        String sql = "UPDATE orders SET delivered_by = ? WHERE order_id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, deliveredBy);
             statement.setInt(2, orderId);
             statement.executeUpdate();
         } catch (SQLException e) {

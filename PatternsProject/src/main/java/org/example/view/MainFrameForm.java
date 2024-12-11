@@ -10,8 +10,10 @@ import org.example.model.Admin;
 import org.example.model.Customer;
 import org.example.controller.util.DatabaseUtil;
 import org.example.model.Order;
+import org.example.model.UserDriver;
 import org.example.view.adminview.AdminMainForm;
 import org.example.view.customerview.CustomerMainForm;
+import org.example.view.driverview.DriverMainForm;
 
 public class MainFrameForm extends JFrame {
     private JButton customerButton;
@@ -81,6 +83,19 @@ public class MainFrameForm extends JFrame {
                 for (Admin admin : admins) {
                     if (admin.getAdminId() == Integer.parseInt(adminTextField.getText())) {
                         new AdminMainForm(admin);
+                        dispose();
+                        return;
+                    }
+                }
+            }
+        });
+        submitButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<UserDriver> drivers = DatabaseUtil.queryAllDrivers();
+                for (UserDriver driver : drivers) {
+                    if (driver.driverId == Integer.parseInt(driverTextField.getText())) {
+                        new DriverMainForm(driver);
                         dispose();
                         return;
                     }

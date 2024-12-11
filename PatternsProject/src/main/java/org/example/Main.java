@@ -25,10 +25,10 @@ public class Main {
 
         UserDriver driver1 = new UserDriver("Carlos", "Sainz", "5679876543", "poi@gmail.com");
 
-//        insertRecordsCustomers(customer1);
-//        insertRecordsCustomers(customer2);
-//        insertRecordsAdmins(admin1);
-//        insertRecordsDrivers(driver1);
+        insertRecordsCustomers(customer1);
+        insertRecordsCustomers(customer2);
+        insertRecordsAdmins(admin1);
+        insertRecordsDrivers(driver1);
        MainFrameForm view = new MainFrameForm();
     }
 }
