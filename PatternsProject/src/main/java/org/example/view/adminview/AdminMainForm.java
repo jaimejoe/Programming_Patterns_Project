@@ -45,4 +45,24 @@ public class AdminMainForm extends JFrame{
             }
         });
     }
+
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+
+    public JButton getProcessBtn() {
+        return processBtn;
+    }
+
+    public JButton getCancelBtn() {
+        return cancelBtn;
+    }
+
+    public JButton getViewOrdersBtn() {
+        return viewOrdersBtn;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
 }

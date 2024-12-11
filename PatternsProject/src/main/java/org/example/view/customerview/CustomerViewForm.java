@@ -25,4 +25,16 @@ public class CustomerViewForm extends JFrame{
         }
         orderList.setModel(listModel);
     }
+
+    public JList getOrderList() {
+        return orderList;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JLabel getOrderLabel() {
+        return orderLabel;
+    }
 }

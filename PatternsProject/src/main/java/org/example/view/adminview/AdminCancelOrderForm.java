@@ -15,6 +15,26 @@ public class AdminCancelOrderForm extends JFrame {
     private JLabel idLabel;
     private JPanel mainPanel;
 
+    public JList getOrderList() {
+        return orderList;
+    }
+
+    public JTextField getIdTextField() {
+        return idTextField;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
+    }
+
+    public JLabel getIdLabel() {
+        return idLabel;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
     public AdminCancelOrderForm() {
         setContentPane(mainPanel);
         setSize(500, 500);
@@ -40,5 +60,7 @@ public class AdminCancelOrderForm extends JFrame {
                 }
             }
         });
+
+
     }
 }

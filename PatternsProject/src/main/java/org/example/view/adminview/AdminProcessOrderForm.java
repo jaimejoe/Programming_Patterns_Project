@@ -43,4 +43,24 @@ public class AdminProcessOrderForm extends JFrame {
             }
         });
     }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JList getOrderList() {
+        return orderList;
+    }
+
+    public JTextField getIdTextField() {
+        return idTextField;
+    }
+
+    public JButton getProcessButton() {
+        return processButton;
+    }
+
+    public JLabel getIdLabel() {
+        return idLabel;
+    }
 }

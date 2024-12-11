@@ -37,70 +37,45 @@ public class MainFrameForm extends JFrame {
         submitButton1.setVisible(false);
         submitButton2.setVisible(false);
         submitButton3.setVisible(false);
-        setVisible(true);
-        customerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                MainFrameForm.this.dispose();
-//                new CustomerViewForm().setVisible(true);
-                customerTextField.setVisible(true);
-                submitButton1.setVisible(true);
-            }
-        });
-        adminButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                new AdminViewForm().setVisible(true);
-                adminTextField.setVisible(true);
-                submitButton2.setVisible(true);
-            }
-        });
-        driverButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                new DriverViewForm().setVisible(true);
-                driverTextField.setVisible(true);
-                submitButton3.setVisible(true);
-            }
-        });
-        submitButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                List<Customer> customers = DatabaseUtil.queryAllCustomers();
-                for (Customer customer : customers) {
-                    if (customer.getCustomerId() == Integer.parseInt(customerTextField.getText())) {
-                        new CustomerMainForm(customer);
-                        dispose();
-                        return;
-                    }
-                }
-            }
-        });
-        submitButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                List<Admin> admins = DatabaseUtil.queryAllAdmins();
-                for (Admin admin : admins) {
-                    if (admin.getAdminId() == Integer.parseInt(adminTextField.getText())) {
-                        new AdminMainForm(admin);
-                        dispose();
-                        return;
-                    }
-                }
-            }
-        });
-        submitButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                List<UserDriver> drivers = DatabaseUtil.queryAllDrivers();
-                for (UserDriver driver : drivers) {
-                    if (driver.driverId == Integer.parseInt(driverTextField.getText())) {
-                        new DriverMainForm(driver);
-                        dispose();
-                        return;
-                    }
-                }
-            }
-        });
+    }
+
+    public JButton getCustomerButton() {
+        return customerButton;
+    }
+
+    public JButton getAdminButton() {
+        return adminButton;
+    }
+
+    public JButton getDriverButton() {
+        return driverButton;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JTextField getCustomerTextField() {
+        return customerTextField;
+    }
+
+    public JButton getSubmitButton1() {
+        return submitButton1;
+    }
+
+    public JTextField getAdminTextField() {
+        return adminTextField;
+    }
+
+    public JButton getSubmitButton2() {
+        return submitButton2;
+    }
+
+    public JTextField getDriverTextField() {
+        return driverTextField;
+    }
+
+    public JButton getSubmitButton3() {
+        return submitButton3;
     }
 }

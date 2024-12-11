@@ -32,28 +32,28 @@ public class CustomerOrderForm extends JFrame {
         pizzaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleFoodItemSelection(FoodItemFactory.createPizza());
+                mealSelection(FoodItemFactory.createPizza());
             }
         });
 
         burgerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleFoodItemSelection(FoodItemFactory.createBurger());
+                mealSelection(FoodItemFactory.createBurger());
             }
         });
 
         saladButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleFoodItemSelection(FoodItemFactory.createSalad());
+                mealSelection(FoodItemFactory.createSalad());
             }
         });
 
         hotDogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleFoodItemSelection(FoodItemFactory.createHotDog());
+                mealSelection(FoodItemFactory.createHotDog());
             }
         });
 
@@ -74,7 +74,7 @@ public class CustomerOrderForm extends JFrame {
         });
     }
 
-    private void handleFoodItemSelection(FoodItem item) {
+    private void mealSelection(FoodItem item) {
         MealSelectionDialog dialog = new MealSelectionDialog();
         dialog.setVisible(true);
 
@@ -91,5 +91,33 @@ public class CustomerOrderForm extends JFrame {
         order.getItems().add(item);
         order.setPrice(order.getPrice() + item.getPrice());
         JOptionPane.showMessageDialog(mainPanel, item.getName() + " added to order. Total: $" + order.getPrice());
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JButton getPizzaButton() {
+        return pizzaButton;
+    }
+
+    public JButton getBurgerButton() {
+        return burgerButton;
+    }
+
+    public JButton getSaladButton() {
+        return saladButton;
+    }
+
+    public JButton getHotDogButton() {
+        return hotDogButton;
+    }
+
+    public JButton getSubmitButton() {
+        return submitButton;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 }

@@ -44,4 +44,24 @@ public class CustomerMainForm extends JFrame {
             }
         });
     }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JLabel getCustomerOptionsLabel() {
+        return customerOptionsLabel;
+    }
+
+    public JButton getOrderButton() {
+        return orderButton;
+    }
+
+    public JButton getCancelOrderButton() {
+        return cancelOrderButton;
+    }
+
+    public JButton getViewOrdersButton() {
+        return viewOrdersButton;
+    }
 }

@@ -27,4 +27,16 @@ public class DriverMainForm extends JFrame {
             }
         });
     }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+
+    public JButton getDeliverButton() {
+        return deliverButton;
+    }
 }

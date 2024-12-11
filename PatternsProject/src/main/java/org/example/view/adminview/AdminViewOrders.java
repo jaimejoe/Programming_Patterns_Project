@@ -24,4 +24,16 @@ public class AdminViewOrders extends JFrame {
         }
         orderList.setModel(listModel);
     }
+
+    public JList getOrderList() {
+        return orderList;
+    }
+
+    public JPanel getPanel1() {
+        return panel1;
+    }
+
+    public JLabel getOrderLabel() {
+        return orderLabel;
+    }
 }

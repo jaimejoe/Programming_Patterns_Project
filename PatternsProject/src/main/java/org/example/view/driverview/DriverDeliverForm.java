@@ -44,4 +44,20 @@ public class DriverDeliverForm extends JFrame {
             }
         });
     }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    public JList getOrderList() {
+        return orderList;
+    }
+
+    public JButton getDeliverButton() {
+        return deliverButton;
+    }
+
+    public JTextField getIdTextField() {
+        return idTextField;
+    }
 }

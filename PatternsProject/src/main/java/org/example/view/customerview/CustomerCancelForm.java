@@ -43,4 +43,24 @@ public class CustomerCancelForm extends JFrame {
             }
         });
     }
+
+    public JList getOrderList() {
+        return orderList;
+    }
+
+    public JTextField getIdTextField() {
+        return idTextField;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
+    }
+
+    public JLabel getIdLabel() {
+        return idLabel;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
 }
